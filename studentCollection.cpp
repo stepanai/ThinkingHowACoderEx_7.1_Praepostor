@@ -2,6 +2,7 @@
 // Created by stepanai on 19.04.2020.
 //
 #include <iostream>
+#include <cstring>
 #include "studentCollection.h"
 #include "studentRecord.h"
 
@@ -171,6 +172,26 @@ studentCollection::studentCollection(studentCollection &&original) {
     original._listHead=nullptr;
 }
 
+void studentCollection::setPraepostorPolicy(bool (*praepostorPolicy)(studentRecord, studentRecord)) {
+    _praepostorPolicy=praepostorPolicy;
+}
+
+studentRecord studentCollection::praepostorStudent() const {
+    if (!_listHead || !_praepostorPolicy){
+        return studentRecord(-1,-1,"");
+    }
+    studentNode *p=_listHead;
+    studentRecord praepostor=*p->studentData;
+    p=p->next;
+    while (p){
+        if ((*_praepostorPolicy)(*p->studentData,praepostor)){
+            praepostor=*p->studentData;
+        }
+        p=p->next;
+    }
+    return praepostor;
+}
+
 
 studentCollection::studentNode::~studentNode() {
     if (isDynamic)
@@ -248,3 +269,15 @@ studentCollection::studentNode::studentNode(studentCollection::studentNode &&tem
     isDynamic=tempNode.isDynamic;
     isConst=tempNode.isConst;
 };
+
+bool higherGrade(studentRecord r1, studentRecord r2) {
+    return r1.grade() > r2.grade();
+}
+
+bool lowerStudentNumber(studentRecord r1, studentRecord r2) {
+    return r1.studentID()<r2.studentID();
+}
+
+bool nameComesFirst(studentRecord r1, studentRecord r2) {
+    return strcmp(r1.name().c_str(), r2.name().c_str())<0;
+}

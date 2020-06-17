@@ -13,7 +13,7 @@
 class studentCollection {
 public:
     struct studentNode{
-        studentRecord const*studentData;
+        const studentRecord *studentData;
         studentNode *next;
         bool isDynamic;
         bool isConst;
@@ -47,6 +47,8 @@ public:
     void print();
     void removeRecord(int id);
     void optimize();
+    void setPraepostorPolicy(bool (*_praepostorPolicy)(studentRecord r1,studentRecord r2));
+    studentRecord praepostorStudent()const;
 
 private:
     studentNode *_listHead;
@@ -54,6 +56,10 @@ private:
     void deleteList();
     studentNode* copyCollection(const studentNode *original);
 };
+
+bool higherGrade(studentRecord r1,studentRecord r2);
+bool lowerStudentNumber(studentRecord r1,studentRecord r2);
+bool nameComesFirst(studentRecord r1,studentRecord r2);
 
 
 #endif //STUDENT_COLECTION_STUDENTCOLLECTION_H
