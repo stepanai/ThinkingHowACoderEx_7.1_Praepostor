@@ -1,9 +1,12 @@
 #include <iostream>
 #include "studentCollection.h"
 #include "studentRecord.h"
+#include "scIterator.h"
 
 using std::cout;
 using std::endl;
+
+double averageRating(studentCollection const&collection);
 
 
 
@@ -26,6 +29,22 @@ int main() {
     cout<<"Praepoptor is ";
     a2.praepostorStudent().show();
     cout<<endl<<"============="<<endl;
+
+
+    cout<<"average mark =";
+    cout<<averageRating(a2);
     //a2.recordAt(2).show();
     return 0;
+}
+
+double averageRating(const studentCollection &collection) {
+    scIterator iter(collection.firstItemIterator());
+    int gradeTotal=0;
+    int numRecords=0;
+    while (!iter.pastEnd()){
+        ++numRecords;
+        gradeTotal+=iter.student().grade();
+        iter.advance();
+    }
+    return static_cast<double>(gradeTotal)/numRecords;
 }

@@ -3,4 +3,4 @@ project(Praepostor)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Praepostor main.cpp studentRecord.cpp studentRecord.h studentCollection.cpp studentCollection.h)
+add_executable(Praepostor main.cpp studentRecord.cpp studentRecord.h studentCollection.cpp studentCollection.h scIterator.cpp scIterator.h)

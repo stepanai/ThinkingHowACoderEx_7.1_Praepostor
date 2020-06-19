@@ -5,6 +5,7 @@
 #include <cstring>
 #include "studentCollection.h"
 #include "studentRecord.h"
+#include "scIterator.h"
 
 studentCollection::studentCollection() {
     _listHead=nullptr;
@@ -203,6 +204,10 @@ studentRecord studentCollection::recordAt(int position)const {
         return studentRecord(-1,-1,"");
     else
         return *p->studentData;
+}
+
+scIterator studentCollection::firstItemIterator()const {
+    return scIterator(_listHead);
 }
 
 
