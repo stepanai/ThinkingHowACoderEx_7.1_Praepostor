@@ -192,6 +192,19 @@ studentRecord studentCollection::praepostorStudent() const {
     return praepostor;
 }
 
+studentRecord studentCollection::recordAt(int position)const {
+    studentNode *p=_listHead;
+    int i=1;
+    while (p && i<position){
+        ++i;
+        p=p->next;
+    }
+    if (!p)
+        return studentRecord(-1,-1,"");
+    else
+        return *p->studentData;
+}
+
 
 studentCollection::studentNode::~studentNode() {
     if (isDynamic)

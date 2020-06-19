@@ -25,5 +25,7 @@ int main() {
     cout<<endl;
     cout<<"Praepoptor is ";
     a2.praepostorStudent().show();
+    cout<<endl<<"============="<<endl;
+    //a2.recordAt(2).show();
     return 0;
 }
