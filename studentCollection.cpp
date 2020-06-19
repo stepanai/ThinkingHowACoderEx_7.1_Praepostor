@@ -206,8 +206,9 @@ studentRecord studentCollection::recordAt(int position)const {
         return *p->studentData;
 }
 
-scIterator studentCollection::firstItemIterator()const {
-    return scIterator(_listHead);
+studentCollection::studentNode* studentCollection::firstItemIterator()const {
+    //return scIterator(_listHead);
+    return _listHead;
 }
 
 

@@ -12,18 +12,18 @@ scIterator::scIterator(studentCollection::studentNode *initial):current(initial)
 
 }
 
-void scIterator::advance() {
+void scIterator::advance()& {
     if (current)
         current=current->next;
 
 
 }
 
-bool scIterator::pastEnd() const {
+bool scIterator::pastEnd() const &{
     return !current;
 }
 
-studentRecord scIterator::student() {
+studentRecord scIterator::student()const &{
     if (!current)
         return studentRecord(-1,-1,"");
     else

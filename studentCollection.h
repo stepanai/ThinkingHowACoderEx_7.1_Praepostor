@@ -52,7 +52,7 @@ public:
     void setPraepostorPolicy(bool (*_praepostorPolicy)(studentRecord r1,studentRecord r2));
     studentRecord praepostorStudent()const;
     studentRecord recordAt(int position)const;
-    scIterator firstItemIterator()const;
+    studentNode* firstItemIterator()const;
 
 private:
     studentNode *_listHead;

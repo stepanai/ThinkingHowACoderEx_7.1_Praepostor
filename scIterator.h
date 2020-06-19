@@ -12,12 +12,12 @@ public:
     scIterator();
     explicit scIterator(studentCollection::studentNode *initial);
 
-    void advance();
-    bool pastEnd()const;
-    studentRecord student();
+    void advance()&;
+    bool pastEnd()const&;
+    studentRecord student()const&;
 
 private:
-    studentCollection::studentNode *current{};
+    studentCollection::studentNode *current;
 };
 
 
